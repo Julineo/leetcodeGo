@@ -5,15 +5,16 @@ import (
 )
 
 func main() {
-	generateParenthesis(3)
+	generateParenthesis(1)
 	fmt.Println("ans:", ans)
 }
 
 var ans []string
 
 func generateParenthesis(n int) []string {
-	backtrack("))))))", 0, 0, n)
-	return []string{}
+	ans = []string{}
+	backtrack("", 0, 0, n)
+	return ans
 }
 
 func backtrack(s string, left int, right int, n int) {
@@ -21,5 +22,11 @@ func backtrack(s string, left int, right int, n int) {
 		fmt.Println(s)
 		ans = append(ans, s)
 		return
+	}
+	if left < n {
+		backtrack(s+"(", left + 1, right, n)
+	}
+	if right < left {
+		backtrack(s+")", left, right + 1, n)
 	}
 }
