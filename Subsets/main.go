@@ -10,19 +10,25 @@ func main () {
 }
 
 var solution [][]int
+var tempSolution []int
 
 func subsets(ums []int) [][]int {
 	solution = [][]int{}
 	sort.Ints(ums)
-	subsetsRec(ums, 0, []int{})
+	subsetsRec(ums, 0)
 	return solution
 }
 
-func subsetsRec(ums []int, index int, tempSolution []int) {
+func subsetsRec(ums []int, index int) {
 	if index == len(ums) {
-
+		solution = append(solution, tempSolution)
 	} else {
-
+		subsetsRec(ums, index + 1)
+		tempSolution = append(tempSolution,ums[index])
+		subsetsRec(ums, index + 1)
+		if len(tempSolution) > 0 {
+			tempSolution = tempSolution[:len(tempSolution)-1]
+		}
 	}
 
 }
