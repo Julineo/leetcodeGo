@@ -8,21 +8,20 @@ import (
 
 func main () {
 	fmt.Println(isPalindrome("A man, a plan, a canal: Panama"))
-	fmt.Println(isPalindrome("ada"))
+	fmt.Println(isPalindrome("0p"))
 }
 
 func isPalindrome(s string) bool {
 	s = strings.ToLower(s)
 	runes := []rune(s)
-	check := []rune{}
+	check := make([]rune,0)
 	for _, r := range(runes) {
-		if unicode.IsLetter(r) {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
 			check = append(check, r)
 		}
 	}
-	fmt.Println(check)
-	for i, sv := range(runes) {
-		if sv != runes[len(runes)-i-1] {
+	for i, sv := range(check) {
+		if sv != check[len(check)-i-1] {
 			return false
 		}
 	}
