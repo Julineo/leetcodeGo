@@ -21,7 +21,9 @@ func subsets(ums []int) [][]int {
 
 func subsetsRec(ums []int, index int) {
 	if index == len(ums) {
-		solution = append(solution, tempSolution)
+		tmp := make([]int, len(tempSolution))//to avoid references to ums
+		copy(tmp,tempSolution)
+		solution = append(solution, tmp)
 	} else {
 		subsetsRec(ums, index + 1)
 		tempSolution = append(tempSolution,ums[index])
