@@ -32,9 +32,6 @@ func myAtoi(str string) int {
 		} else {
 			break
 		}
-		if r == ' ' && len(digits) > 0 {
-			break 
-		}
 		if !unicode.IsDigit(r) && len(digits) > 0 {
 			break
 		}
