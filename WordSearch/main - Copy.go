@@ -27,8 +27,22 @@ func main () {
 
 }
 
+var origin [][]byte
+
 func exist(board [][]byte, word string) bool {
 	fmt.Println(board)
+
+	origin = make([][]byte, len(board))
+	for i := 0; i < len(board); i++ {
+		origin[i] = make([]byte, len(board[i]))
+	}
+
+	for m := 0; m < len(board); m++ {
+		for n := 0; n < len(board[m]); n++ {
+			v := board[m][n]
+			origin[m][n] = v
+		}
+	}
 
 	for m := 0; m < len(board); m++ {
 		for n := 0; n < len(board[m]); n++ {
@@ -55,6 +69,7 @@ func helper(board [][]byte, m int, n int, word string, d int) bool {
 	fmt.Println(string(board[m][n]))
 	fmt.Println(word[d])
 	board[m][n] ^= 255//to avoid geting to the same character. XOR to save memory
+	fmt.Println(string(board[m][n]))
 	fmt.Println(board)
 	if      helper(board, m-1, n, word, d+1) ||
 		helper(board, m+1, n, word, d+1) ||
@@ -62,8 +77,19 @@ func helper(board [][]byte, m int, n int, word string, d int) bool {
 		helper(board, m, n+1, word, d+1) {
 		return true
 	}
+	fmt.Println("Not found byte")
 
 	board[m][n] ^= 255
+
+	//getting back original array. It's handy with AAB case. this is not workin actually
+	//if d == 0 {
+//		for m := 0; m < len(board); m++ {
+//			for n := 0; n < len(board[m]); n++ {
+//				v := origin[m][n]
+//				board[m][n] = v
+//			}
+//		}
+//	}
 
 	return false
 }
