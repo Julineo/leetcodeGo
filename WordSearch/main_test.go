@@ -2,40 +2,48 @@ package main
 
 import "testing"
 
-func TestOne(t *testing.T) {
-	board := [][]byte{{'A','B','C','E'},
-			{'S','F','C','S'},
-			{'A','D','E','E'}}
-	word := "ABCCED"//true
-
-	if !exist(board, word) {
-		t.Error(`testOne fails`, "ABCCED")
+func TestExist(t *testing.T) {
+	var tests = []struct {
+		board[][]byte
+		word string
+		want bool
+	}{
+		{
+			[][]byte{{'A','B','C','E'},
+				{'S','F','C','S'},
+				{'A','D','E','E'}},
+			"ABCCED",
+			true},
+		{
+			[][]byte{{'A','B','C','E'},
+				{'S','F','C','S'},
+				{'A','D','E','E'}},
+			"AFS",
+			false},
+		{
+			[][]byte{{'C','A','A'},
+				{'A','A','A'},
+				{'B','C','D'}},
+			"AAB",
+			true},
+		{
+			[][]byte{{'A','B','C','E'},
+				{'S','F','E','S'},
+				{'A','D','E','E'}},
+			"ABCESEEEFS",
+			true},
 	}
+	for _, test := range tests {
+		//copy slice to show it later in test case output
+		origin := make([][]byte, len(test.board))
+		for i := range test.board {
+			origin[i] = make([]byte, len(test.board[i]))
+			copy(origin[i], test.board[i])
+		}
 
-	word = "AFS"//false
-
-	if exist(board, word) {
-		t.Error(`testOne fails`, "AFS")
-	}
-}
-
-func TestTwo(t *testing.T) {
-	board := [][]byte{{'C','A','A'},
-			{'A','A','A'},
-			{'B','C','D'}}
-	word := "AAB"//true
-
-	if !exist(board, word) {
-		t.Error(`testTwo fails`, "AAB")
-	}
-
-	board = [][]byte{{'A','B','C','E'},
-			{'S','F','E','S'},
-			{'A','D','E','E'}}
-
-	word = "ABCESEEEFS"//true
-
-	if !exist(board, word) {
-		t.Error(`TestTwo fails`, "ABCESEEEFS")
+		//run test
+		if got := exist(test.board, test.word); got != test.want {
+			t.Errorf("exist(%c,%q) = %v", origin, test.word, got)
+		}
 	}
 }

@@ -28,7 +28,7 @@ func main () {
 }
 
 func exist(board [][]byte, word string) bool {
-	fmt.Println(board)
+	fmt.Printf("%c/n", board)
 
 	for m := 0; m < len(board); m++ {
 		for n := 0; n < len(board[m]); n++ {
@@ -55,7 +55,7 @@ func helper(board [][]byte, m int, n int, word string, d int) bool {
 	//fmt.Println(string(board[m][n]))
 	//fmt.Println(word[d])
 	board[m][n] ^= 255//to avoid geting to the same character. XOR to save memory
-	fmt.Println(board)
+	fmt.Printf("%c/n", board)
 	if      helper(board, m-1, n, word, d+1) ||
 		helper(board, m+1, n, word, d+1) ||
 		helper(board, m, n-1, word, d+1) ||
