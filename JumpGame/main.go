@@ -11,6 +11,7 @@ func main() {
 func canJump(nums []int) bool {
 	dist := 0
 	for i := 0; i <= dist; i++  {
+		fmt.Printf("i: %v\n", i)
 		fmt.Printf("dist: %v\n", dist)
 		dist = max(dist, i + nums[i])
 		if dist >= len(nums) - 1 {
