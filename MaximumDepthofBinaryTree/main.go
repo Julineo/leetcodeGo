@@ -23,8 +23,16 @@ func main () {
 }
 
 func maxDepth(root *TreeNode) int {
-    
-	return 0
+	if root == nil {
+		return 0
+	}
+	dl := 1 + maxDepth(root.Left)
+	dr := 1 + maxDepth(root.Right)
+	if dl > dr {
+		return dl
+	} else {
+		return dr
+	}
 }
 
 func read() []TreeNode {
