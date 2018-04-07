@@ -1,22 +1,33 @@
+// go run main.go < input
+
 package main
 
 import "fmt"
 
-type Node struct {
+type TreeNode struct {
 	Value int
-	Left *Node
-	Right *Node
+	Left *TreeNode
+	Right *TreeNode
 }
 
 func main () {
 	nodes := read()
 
-	for _, node := range(nodes) {
+	for i, node := range(nodes) {
+		fmt.Printf("%p\n", &nodes[i])
 		printNode(&node)
 	}
+
+	//passing root node
+	fmt.Println(maxDepth(&nodes[len(nodes) - 1]))
 }
 
-func read() []Node {
+func maxDepth(root *TreeNode) int {
+    
+	return 0
+}
+
+func read() []TreeNode {
 	/*test := &Node{
 		1,
 		nil,
@@ -35,12 +46,11 @@ func read() []Node {
 	fmt.Scanf("%d", &N)
 	fmt.Println("N: ", N)
 
-	var nodes []Node = make([]Node, N)
+	var nodes []TreeNode = make([]TreeNode, N)
 
 	var val, indexLeft, indexRight int
 	for i := 0; i < N; i++ {
 		fmt.Scanf("%d %d %d", &val, &indexLeft, &indexRight)
-		fmt.Println(val, indexLeft, indexRight)
 		nodes[i].Value = val
 		if indexLeft >= 0 {
 			nodes[i].Left = &nodes[indexLeft]
@@ -53,7 +63,7 @@ func read() []Node {
 	return nodes
 }
 
-func printNode(n *Node) {
+func printNode(n *TreeNode) {
 	fmt.Print("Value: ", n.Value)
 	if n.Left != nil {
 		fmt.Print(" Left: ", n.Left.Value)
