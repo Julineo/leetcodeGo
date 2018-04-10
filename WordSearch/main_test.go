@@ -13,25 +13,29 @@ func TestExist(t *testing.T) {
 				{'S','F','C','S'},
 				{'A','D','E','E'}},
 			"ABCCED",
-			true},
+			true,
+		},
 		{
 			[][]byte{{'A','B','C','E'},
 				{'S','F','C','S'},
 				{'A','D','E','E'}},
 			"AFS",
-			false},
+			false,
+		},
 		{
 			[][]byte{{'C','A','A'},
 				{'A','A','A'},
 				{'B','C','D'}},
 			"AAB",
-			true},
+			true,
+		},
 		{
 			[][]byte{{'A','B','C','E'},
 				{'S','F','E','S'},
 				{'A','D','E','E'}},
 			"ABCESEEEFS",
-			true},
+			true,
+		},
 	}
 	for _, test := range tests {
 		//copy slice to show it later in test case output

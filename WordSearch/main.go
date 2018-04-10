@@ -28,7 +28,6 @@ func main () {
 }
 
 func exist(board [][]byte, word string) bool {
-	fmt.Printf("%c/n", board)
 
 	for m := 0; m < len(board); m++ {
 		for n := 0; n < len(board[m]); n++ {
