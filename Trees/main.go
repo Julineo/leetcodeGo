@@ -19,6 +19,7 @@ func main () {
 	}
 
 	//passing root node
+	fmt.Println(nodes)
 	fmt.Println(maxDepth(&nodes[len(nodes) - 1]))
 }
 
