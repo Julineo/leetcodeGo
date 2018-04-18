@@ -10,25 +10,34 @@ func main() {
 }
 
 func countAndSay(n int) string {
-	ns := []string{"1"}
-	letter, letterP, res := "", "", ""
-	for i := 0; i < n; i++ {
+	ns := []string{"0","1"}
+    letter, letterP := "", ""
+	for i := 1; i < n; i++ {
 
 		count := 1
-		for _, a := range ns[i] {
+        res := ""
+		for j, a := range ns[i] {
 			letter = string(a)
+            fmt.Println("j",j)
+            fmt.Println("string(a):", string(a))
 			if letterP == letter {
 				count++
-			} else {
+                fmt.Println("count:", count)
+			} 
+            if letterP != letter || j == len(ns[i])-1{
+                fmt.Println("second:", res, strconv.Itoa(count), letter)
 				res = res + strconv.Itoa(count) + letter
-				letterP = letter
-				count = 1
 			}
+            letterP = letter
+            fmt.Println("boom")
 		}
-	ns = append(ns, res)
+        fmt.Println("letterP:", letterP)
+        fmt.Println("letter:", letter)
+        fmt.Println("res:", res)
+        ns = append(ns, res)
 	}
-
-	return res
+    fmt.Println("ns",ns)
+	return ns[n]
 }
 
 func countAndSayReversed(n int) string {
