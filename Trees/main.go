@@ -52,14 +52,15 @@ func read() []TreeNode {
 	printNode(test)*/
 
 	var N int
-	fmt.Scanf("%d", &N)
+	fmt.Scanf("%d\n", &N)
 	fmt.Println("N: ", N)
 
 	var nodes []TreeNode = make([]TreeNode, N)
 
 	var val, indexLeft, indexRight int
 	for i := 0; i < N; i++ {
-		fmt.Scanf("%d %d %d", &val, &indexLeft, &indexRight)
+		fmt.Scanf("%d %d %d\n", &val, &indexLeft, &indexRight)
+		fmt.Println(val, indexLeft, indexRight)
 		nodes[i].Value = val
 		if indexLeft >= 0 {
 			nodes[i].Left = &nodes[indexLeft]

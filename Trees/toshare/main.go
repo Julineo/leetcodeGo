@@ -4,11 +4,11 @@ import "fmt"
 
 type TreeNode struct {
 	Value int
-	Left *TreeNode
+	Left  *TreeNode
 	Right *TreeNode
 }
 
-func main () {
+func main() {
 	nodes := read()
 
 	for i, node := range(nodes) {
@@ -36,8 +36,8 @@ func maxDepth(root *TreeNode) int {
 
 func read() []TreeNode {
 	var input = []struct {
-		val int
-		left int
+		val   int
+		left  int
 		right int
 	}{
 		{15, -1, -1},
