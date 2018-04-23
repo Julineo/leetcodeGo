@@ -8,17 +8,32 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func main() {
+func main () {
 	nodes := read()
+	fmt.Println(isValidBST(&nodes[len(nodes) - 1]))
+	nodes = read2()
+	fmt.Println(isValidBST(&nodes[len(nodes) - 1]))
+}
 
-	for i, node := range(nodes) {
-		fmt.Printf("%p\n", &nodes[i])
-		printNode(&node)
+var prev *TreeNode
+
+func isValidBST(root *TreeNode) bool {
+	prev = nil
+	return isValidBSTHelper(root)
+}
+//need helper function to nill the prev value
+func isValidBSTHelper(root *TreeNode) bool {
+	if root == nil {
+		return true
 	}
-
-	//passing root node
-	fmt.Println(nodes)
-	fmt.Println(maxDepth(&nodes[len(nodes) - 1]))
+	if !isValidBSTHelper(root.Left) {
+		return false
+	}
+	if prev != nil && prev.Value >= root.Value {
+		return false
+	}
+	prev = root
+	return isValidBSTHelper(root.Right)
 }
 
 func maxDepth(root *TreeNode) int {
@@ -40,11 +55,37 @@ func read() []TreeNode {
 		left  int
 		right int
 	}{
-		{15, -1, -1},
-		{7, -1, -1},
-		{9, -1, -1},
-		{20, 0, 1},
-		{3, 2, 3},
+		{3, -1, -1},
+		{6, -1, -1},
+		{1, -1, -1},
+		{4, 0, 1},
+		{5, 2, 3},
+	}
+
+	var nodes []TreeNode = make([]TreeNode, len(input))
+
+	var val, indexLeft, indexRight int
+	for i := 0; i < len(input); i++ {
+		val, indexLeft, indexRight = input[i].val, input[i].left, input[i].right
+		nodes[i].Value = val
+		if indexLeft >= 0 {
+			nodes[i].Left = &nodes[indexLeft]
+		}
+		if indexRight >= 0 {
+			nodes[i].Right = &nodes[indexRight]
+		}
+	}
+
+	return nodes
+}
+
+func read2() []TreeNode {
+	var input = []struct {
+		val   int
+		left  int
+		right int
+	}{
+		{0, -1, -1},
 	}
 
 	var nodes []TreeNode = make([]TreeNode, len(input))
