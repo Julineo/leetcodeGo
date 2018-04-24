@@ -15,12 +15,27 @@ func main () {
 	fmt.Println(isValidBST(&nodes[len(nodes) - 1]))
 }
 
-var prev *TreeNode
-
 func isValidBST(root *TreeNode) bool {
+	var prev *TreeNode
 	prev = nil
+	var isValidBSTHelper func(root *TreeNode) bool
+	isValidBSTHelper = func(root *TreeNode) bool {
+		if root == nil {
+			return true
+		}
+		if !isValidBSTHelper(root.Left) {
+			return false
+		}
+		if prev != nil && prev.Value >= root.Value {
+			return false
+		}
+		prev = root
+		return isValidBSTHelper(root.Right)
+	}
+
 	return isValidBSTHelper(root)
 }
+
 //need helper function to nill the prev value
 func isValidBSTHelper(root *TreeNode) bool {
 	if root == nil {
