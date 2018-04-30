@@ -36,21 +36,6 @@ func isValidBST(root *TreeNode) bool {
 	return isValidBSTHelper(root)
 }
 
-//need helper function to nill the prev value
-func isValidBSTHelper(root *TreeNode) bool {
-	if root == nil {
-		return true
-	}
-	if !isValidBSTHelper(root.Left) {
-		return false
-	}
-	if prev != nil && prev.Value >= root.Value {
-		return false
-	}
-	prev = root
-	return isValidBSTHelper(root.Right)
-}
-
 func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
