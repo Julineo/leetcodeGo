@@ -31,32 +31,23 @@ import (
 )
 
 func main() {
-	//test cases
 	fmt.Println(pivotIndex([]int{1, 7, 3, 6, 5, 6}))
 	fmt.Println(pivotIndex([]int{1, 2, 3}))
-	fmt.Println(pivotIndex([]int{-1, -1, -1, -1, 0, 1}))
-	fmt.Println(pivotIndex([]int{-1, -1, -1, 0, 1, 1}))
-	fmt.Println(pivotIndex([]int{}))
 }
 
 func pivotIndex(nums []int) int {
-	if len(nums) == 0 {
-		return -1
-	}
 	//form left and right sums
-	l := 0
+	l := nums[0]
 	r := 0
-	for i := 1; i < len(nums); i++ {
+	for i := 2; i < len(nums); i++ {
 		r += nums[i]
-	}
-	if l == r {
-		return 0
 	}
 
 	//looking for pivot idex
-	for i := 1; i < len(nums); i++ {
+	for i := 2; i < len(nums); i++ {
 		l += nums[i-1]
 		r -= nums[i]
+		fmt.Println(l, r)
 		if l == r {
 			return i
 		}
