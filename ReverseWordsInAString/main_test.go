@@ -11,6 +11,7 @@ func TestReverseWords(t *testing.T) {
 	}{
 		{"the sky is blue", "blue is sky the"},
 		{"", ""},
+		{"  a  b", "b  a"},
 	}
 	for _, test := range tests {
 		if got := reverseWords(test.s); got != test.want {
