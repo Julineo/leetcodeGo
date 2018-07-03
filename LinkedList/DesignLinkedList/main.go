@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type MyLinkedList struct {
 	val int
 	next *MyLinkedList
@@ -31,9 +33,15 @@ func (this *MyLinkedList) Get(index int) int {
 
 /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
 func (this *MyLinkedList) AddAtHead(val int)  {
-	var newHead *MyLinkedList
-	newHead.val = val
-	newHead.next = this
+	newHead := &MyLinkedList{val: val}
+	fmt.Printf("1 newHead: %v, %v\n", &newHead, newHead)
+	fmt.Printf("2 this: %v, %v\n", &this, this)
+	tmp := &this
+	fmt.Printf("3 tmp: %v, %v\n", &tmp, tmp)
+	this = newHead
+	fmt.Printf("4 this: %v, %v\n", &this, this)
+	newHead.next = *tmp
+	fmt.Printf("5 newHead: %v, %v\n", &newHead, newHead)
 }
 
 
