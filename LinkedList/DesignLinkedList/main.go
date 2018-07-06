@@ -36,11 +36,11 @@ func (this *MyLinkedList) AddAtHead(val int)  {
 	newHead := &MyLinkedList{val: val}
 	fmt.Printf("1 newHead: %v, %v\n", &newHead, newHead)
 	fmt.Printf("2 this: %v, %v\n", &this, this)
-	tmp := &this
+	tmp := this
 	fmt.Printf("3 tmp: %v, %v\n", &tmp, tmp)
 	this = newHead
 	fmt.Printf("4 this: %v, %v\n", &this, this)
-	newHead.next = *tmp
+	newHead.next = tmp
 	fmt.Printf("5 newHead: %v, %v\n", &newHead, newHead)
 }
 
