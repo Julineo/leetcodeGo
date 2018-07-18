@@ -1,5 +1,17 @@
 /*
+https://leetcode.com/explore/learn/card/linked-list/219/classic-problems/1205/
 
+Reverse Linked List
+  Go to Discuss
+Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+Follow up:
+
+A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
 package main
 
@@ -33,17 +45,17 @@ func (this *ListNode) showList() {
 	}
 }
 
-// reverses linked list
+// reverses linked list iteratively
 func reverseList(head *ListNode) *ListNode {
-	cur := head
-	for {
-		tmp := cur.Next
-		head = cur.Next
-		head.Next = cur
-		cur.Next = tmp
-		cur = tmp.Next
-		break
+	var prev *ListNode
+	cur, head, next := head, head, head
+	for next != nil {
+		next = cur.Next
+		cur.Next = prev
+		prev = cur
+		cur = next
 	}
+	head = prev
 	return head
 }
 
