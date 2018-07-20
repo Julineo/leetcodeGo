@@ -30,8 +30,9 @@ func main() {
 		l.AddAtTail(i)
 	}
 	l.showList()
-	l = reverseList(l)
-	fmt.Println("end")
+//	l = reverseList(l)
+//	l.showList()
+	l = reverseListRecursive(l, nil)
 	l.showList()
 }
 
@@ -58,6 +59,24 @@ func reverseList(head *ListNode) *ListNode {
 	head = prev
 	return head
 }
+
+func reverseListRecursive(curr, prev *ListNode) *ListNode {
+	var head *ListNode
+	fmt.Println("test")
+	fmt.Println(curr, &curr)
+	fmt.Println("head", head, &head)
+	if curr.Next == nil {
+		head = curr
+		curr.Next = prev
+		return head
+	}
+	next1 := curr.Next
+	curr.Next = prev
+	reverseListRecursive(next1, curr)
+	fmt.Println("head", head, &head)
+	return head
+}
+
 
 // adds nodes at tail
 func (this *ListNode) AddAtTail(val int)  {
