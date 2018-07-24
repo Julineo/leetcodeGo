@@ -30,8 +30,10 @@ func main() {
 		l.AddAtTail(i)
 	}
 	l.showList()
-//	l = reverseList(l)
-//	l.showList()
+	l = reverseList(l)
+	l.showList()
+	l = reverseListRecursive(l, nil)
+	l = nil
 	l = reverseListRecursive(l, nil)
 	l.showList()
 }
@@ -61,20 +63,18 @@ func reverseList(head *ListNode) *ListNode {
 }
 
 func reverseListRecursive(curr, prev *ListNode) *ListNode {
-	var head *ListNode
-	fmt.Println("test")
-	fmt.Println(curr, &curr)
-	fmt.Println("head", head, &head)
+	var head, next *ListNode
+	if curr == nil {
+		return nil
+	}
 	if curr.Next == nil {
 		head = curr
 		curr.Next = prev
 		return head
 	}
-	next1 := curr.Next
+	next = curr.Next
 	curr.Next = prev
-	reverseListRecursive(next1, curr)
-	fmt.Println("head", head, &head)
-	return head
+	return reverseListRecursive(next, curr)
 }
 
 
