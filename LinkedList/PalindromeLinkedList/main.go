@@ -54,7 +54,7 @@ func isPalindrome(head *ListNode) bool {
 		fmt.Printf("prev: %p %v\n", prev, prev)
 	}
 
-	//getting ready for camperison, assuming odd and even cases
+	//getting ready for comperison, assuming odd and even cases
 	var first, second *ListNode
 	if fast == nil {
 		first = prev
