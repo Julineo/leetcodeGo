@@ -35,22 +35,26 @@ func main() {
 		l.AddAtTail(i)
 	}
 	l.showList()
-	l = reverseList(l)
-	l.showList()
-	l = reverseListRecursive(l, nil)
-	l = nil
-	l = reverseListRecursive(l, nil)
+	oddeven(l)
 	l.showList()
 }
 
 // changes odd/even sequence of linked list
 func oddeven(head *ListNode) *ListNode {
-	steps := 1
-	var cur, next *ListNode
-	cur = head
+	if head == nil {return nil}
+	var evenHead, odd, even *ListNode
+	odd = head
+	even = head.Next
+	evenHead = even
 	for {
-
+		if even == nil { break }
+		odd.Next = odd.Next.Next
+		if even.Next == nil { break }
+		even.Next = even.Next.Next
+		odd = odd.Next
+		even = even.Next
 	}
+	odd.Next = evenHead
 	return head
 }
 
