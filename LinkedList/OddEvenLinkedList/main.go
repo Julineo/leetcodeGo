@@ -58,7 +58,7 @@ func oddeven(head *ListNode) *ListNode {
 	return head
 }
 
-// prints tes linked list
+// prints linked list
 func (this *ListNode) showList() {
 	var cur *ListNode
 	cur = this
