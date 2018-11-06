@@ -44,16 +44,12 @@ func main() {
 			continue
 		}
 
-	//	if v > (*h)[0] {
-	//		heap.Push(h, v)
-	//	}
+		if v > (*h)[0] {
+			(*h)[0] = v
+			heap.Fix(h, 0)
+		}
 	}
 
-
-
-	/*h := &IntHeap{2, 1, 5}
-	heap.Init(h)
-	heap.Push(h, 3)*/
 	fmt.Printf("minimum: %d\n", (*h)[0])
 	for h.Len() > 0 {
 		fmt.Printf("%d ", heap.Pop(h))
