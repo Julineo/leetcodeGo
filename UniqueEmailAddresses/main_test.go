@@ -2,17 +2,16 @@ package main
 
 import "testing"
 
-func TestCoinChange(t *testing.T) {
+func TestNumUniqueEmails(t *testing.T) {
 	var tests = []struct {
-		coins[]int
-		amount int
+		emails []string
 		want int
 	}{
-		{[]int{1,2,5}, 11, 3},
-		{[]int{2}, 3, -1}}
+		{[]string{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"}, 2},
+		}
 	for _, test := range tests {
-		if got := coinChange(test.coins, test.amount); got != test.want {
-			t.Errorf("coinChange(%v) = %v", test.coins, got)
+		if got := numUniqueEmails(test.emails); got != test.want {
+			t.Errorf("numUniqueEmails(%v) = %v", test.emails, got)
 		}
 	}
 }
